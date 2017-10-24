@@ -60,6 +60,7 @@ export default class extends React.Component {
         <Head title="Home" />
         <div>
           <App
+            id={this.props.url.query.id}
             resultsState={this.props.resultsState}
             onSearchStateChange={this.onSearchStateChange}
             searchState={

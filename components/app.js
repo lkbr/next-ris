@@ -9,6 +9,7 @@ import {
   Pagination,
 } from 'react-instantsearch/dom';
 import { InstantSearch } from './instantsearch';
+import { connectMenu } from 'react-instantsearch/connectors';
 
 const HitComponent = ({ hit }) => (
   <div className="hit">
@@ -37,6 +38,8 @@ HitComponent.propTypes = {
   hit: PropTypes.object,
 };
 
+const VirtualMenu = connectMenu(() => null);
+
 export default class extends React.Component {
   static propTypes = {
     searchState: PropTypes.object,
@@ -56,6 +59,8 @@ export default class extends React.Component {
         searchState={this.props.searchState}
         createURL={this.props.createURL}
       >
+        <pre>this.props.id: {this.props.id}</pre>
+        <VirtualMenu attributeName="category" defaultRefinement={this.props.id}/>
         <Configure hitsPerPage={10} />
         <header>
           <h1>React InstantSearch + Next.Js</h1>
